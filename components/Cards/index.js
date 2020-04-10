@@ -29,7 +29,8 @@ axios.get(`https://lambda-times-backend.herokuapp.com/articles`)
             //articlesArr is an array of arrays with an array of articles in index 1
             //Loop over the array at index 1 and create our article cards
             arr[1].forEach(a => {
-                cardsContainer.appendChild(articleCard(a))
+                const category = arr[0]
+                cardsContainer.appendChild(articleCard(a, category))  
             })
         })
     })
@@ -40,7 +41,7 @@ axios.get(`https://lambda-times-backend.herokuapp.com/articles`)
 
 const cardsContainer = document.querySelector('.cards-container')
 
-function articleCard(obj){
+function articleCard(obj, str){
 
     //create the elements
     const card = document.createElement('div')
@@ -48,6 +49,7 @@ function articleCard(obj){
         //Inside the card div
         const headline = document.createElement('div')
         const author = document.createElement('div')
+        const category = document.createElement('p')
            
             //Inside the author div
             const imgContainer = document.createElement('div')
@@ -69,10 +71,12 @@ function articleCard(obj){
     headline.textContent = `${obj.headline}`
     authorPic.src = `${obj.authorPhoto}`
     byLine.textContent = `By ${obj.authorName}`
+    category.textContent = `${str}`
 
     //Structure the elements into the component
     card.appendChild(headline)
     card.appendChild(author)
+    card.appendChild(category)
 
         author.appendChild(imgContainer)
         author.appendChild(byLine)
