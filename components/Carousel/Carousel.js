@@ -20,28 +20,6 @@
 
 //Current Img index num
 let indexNum = 1
-showImg(indexNum)
-
-//Changes the indexNum when the left or right button is clicked
-function carouselBtns(num){
-  showImg(indexNum += num)
-}
-
-function showImg(indexNum){
-
-  //grab all the <img>s in the carousel
-  //const imgBox = document.querySelector('.carousel')
-  const images = document.querySelectorAll('.carousel img')
-  
-  //Adjust the index num so it "wraps from front to back and vice versa"
-  if(indexNum > images.length) { indexNum = 1 }
-
-  if(indexNum < 1){ indexNum = images.length }
-console.dir(images)
-images[indexNum - 1]
-
-}
-
 
 //Creates an Img Carousel Component
 function createCarousel(){
@@ -76,8 +54,8 @@ function createCarousel(){
   rightBtn.textContent = ' > '
 
   //Add event listeners
-  leftBtn.addEventListener('click', carouselBtns(-1))
-  rightBtn.addEventListener('click', carouselBtns(1))
+  leftBtn.addEventListener('click', () => carouselBtns(-1))
+  rightBtn.addEventListener('click', () => carouselBtns(1))
 
   //Structure the elements
   carousel.appendChild(leftBtn)
@@ -92,3 +70,26 @@ function createCarousel(){
 
 const carouselContainter = document.querySelector('.carousel-container')
 carouselContainter.appendChild(createCarousel())
+
+showImg(indexNum)
+
+//Changes the indexNum when the left or right button is clicked
+function carouselBtns(num){
+  showImg(indexNum += num)
+}
+
+//Displays one image at a time
+function showImg(num){
+
+  //grab all the <img>s in the carousel
+  const images = document.querySelectorAll('img.slide-img')
+
+  //Adjust the index num so it "wraps from front to back and vice versa"
+  if(num > images.length) { indexNum = 1 }
+
+  if(num < 1){ indexNum = images.length }
+
+  images.forEach(img => img.classList.remove('show-img'))
+  images[indexNum - 1].classList.toggle('show-img')
+
+}
