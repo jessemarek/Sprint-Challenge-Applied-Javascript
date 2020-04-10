@@ -18,8 +18,7 @@
   </div>
 */
 
-//Current Img index num
-let indexNum = 1
+
 
 //Creates an Img Carousel Component
 function createCarousel(){
@@ -68,9 +67,14 @@ function createCarousel(){
   return carousel
 }
 
+//Current Img index num
+let indexNum = 1
+
+//Add Carousel to DOM
 const carouselContainter = document.querySelector('.carousel-container')
 carouselContainter.appendChild(createCarousel())
 
+//Set the initial Img to be displayed
 showImg(indexNum)
 
 //Changes the indexNum when the left or right button is clicked
@@ -91,5 +95,4 @@ function showImg(num){
 
   images.forEach(img => img.classList.remove('show-img'))
   images[indexNum - 1].classList.toggle('show-img')
-
 }

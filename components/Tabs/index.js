@@ -37,5 +37,28 @@ function createTab(str){
     //add content to element
     tab.textContent = str
 
+    //Add event listeners
+    tab.addEventListener('click', () => {
+        filterArticles(`${event.target.textContent}`)
+    })
+
     return tab
+}
+
+function filterArticles(category){
+    //Get all the article cards on the page
+    const allArticles = document.querySelectorAll('.card')
+    allArticles.forEach(a => {
+
+        //reset all styles to display
+        a.style.display = ''
+
+        //hide all non matching categories
+        if(a.querySelector('p').textContent != category){
+            //Set node.js cat to match properly
+            if(category === 'node.js'){ category = 'node' }
+            
+            a.style.display = 'none'
+        }
+    })
 }
