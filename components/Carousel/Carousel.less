@@ -9,14 +9,15 @@
     width: 1200px;
   }
   .left-button, .right-button {
-    .flex(center);
+    .flex(center, center);
     color: @lambda-times-color-white;
     background-color: @lambda-times-color-primary;
     font-size: 40px;
-    border-radius: 50%;
+    border-radius: 15px;
     position: absolute;
     width: 50px;
     height: 50px;
+    z-index: 50;
     cursor: pointer;
     &:hover {
       color: @lambda-times-color-primary;
@@ -34,8 +35,15 @@
     right: 25px;
     transform: translate(0, -50%);
   }
-  img {
+  .slide-img {
     .width-100();
-    display: none;
+    position: absolute;
+    opacity: 0;
+    transition: all 1s ease;
   }
+
+  .slide-img.show-img {
+    opacity: 1;
+  }
+  
 }
